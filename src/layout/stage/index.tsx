@@ -1,6 +1,8 @@
 import React from 'react'
 // antd
-import { Button, Space } from 'antd'
+import { Button } from 'antd'
+// components
+import Space from '../../components/Space'
 // react-dnd
 import { useDrop } from 'react-dnd'
 // item-type
@@ -51,7 +53,6 @@ export default function Stage() {
 		}),
 	}))
   const {components} = useComponents()
-  console.log(components)
 	return (
 		<div
 			className="p-[24px] h-[100%]"

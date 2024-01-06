@@ -7,12 +7,12 @@ import { useComponents } from '../../app/hooks/useComponents'
 
 export default function Material() {
 	const { addComponent } = useComponents()
-	const onDragEnd = (dropResult: { name: string; props: any }) => {
+	const onDragEnd = (dropResult: { name: string; id: number; props: any }) => {
 		addComponent({
 			id: new Date().getTime(),
 			name: dropResult.name,
 			props: dropResult.props,
-		})
+		},dropResult.id)
 	}
 	return (
 		<div className="flex p-[10px] gap-4 flex-wrap">
