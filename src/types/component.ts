@@ -10,5 +10,5 @@ export interface State {
 }
 
 export interface Action {
-	addComponent: (component: Component) => void
+	addComponent: (component: Component, parentId?: number) => void
 }
