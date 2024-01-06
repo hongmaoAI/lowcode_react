@@ -5,19 +5,15 @@ import { Button, Space } from 'antd'
 import { useDrop } from 'react-dnd'
 // item-type
 import { ItemType } from '../../item-type'
-
-interface Component {
-	id: number
-	name: string
-	props: any
-	children?: Component[]
-}
+// componentType
+import type {Component} from '../../types/component'
+// app -> hooks
+import {useComponents} from '../../app/hooks/useComponents'
 
 interface ComponentMap {
 	[key: string]: React.ComponentType<any>
 }
 
-const components: Component[] = []
 
 const ComponentMap: ComponentMap = {
 	Button: Button,
@@ -54,6 +50,8 @@ export default function Stage() {
 			canDrop: monitor.canDrop(),
 		}),
 	}))
+  const {components} = useComponents()
+  console.log(components)
 	return (
 		<div
 			className="p-[24px] h-[100%]"

@@ -2,10 +2,17 @@ import React from 'react'
 
 import ComponentItem from '../../common/component-item'
 import { ItemType } from '../../item-type'
+// app -> hooks
+import { useComponents } from '../../app/hooks/useComponents'
 
 export default function Material() {
-	const onDragEnd = (item: any) => {
-		console.log(item)
+	const { addComponent } = useComponents()
+	const onDragEnd = (dropResult: { name: string; props: any }) => {
+		addComponent({
+			id: new Date().getTime(),
+			name: dropResult.name,
+			props: dropResult.props,
+		})
 	}
 	return (
 		<div className="flex p-[10px] gap-4 flex-wrap">
