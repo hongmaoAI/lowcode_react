@@ -26,11 +26,11 @@ function SelectedMask(
 	useEffect(() => {
 		updatePosition()
 	}, [componentId])
-	useImperativeHandle(ref, () => {
-		return updatePosition
-	})
+	useImperativeHandle(ref, () => ({
+		updatePosition,
+	}))
 
-	function updatePosition() {
+	const updatePosition = () => {
 		if (!componentId) return
 		const container = document.querySelector(`.${offsetContainerClassName}`)
 		if (!container) return
@@ -51,22 +51,24 @@ function SelectedMask(
 	}
 
 	return createPortal(
-		<div
-			style={{
-				position: 'absolute',
-				left: position.left,
-				top: position.top,
-				backgroundColor: 'rgba(66, 133, 244, 0.2)',
-				border: '1px solid rgb(66, 133, 244)',
-				pointerEvents: 'none',
-				width: position.width,
-				height: position.height,
-				zIndex: 1003,
-				borderRadius: 4,
-				boxSizing: 'border-box',
-			}}
-		></div>,
-		document.querySelector(`.${containerClassName}`)
+		<>
+			<div
+				style={{
+					position: 'absolute',
+					left: position.left,
+					top: position.top,
+					backgroundColor: 'rgba(66, 133, 244, 0.2)',
+					border: '1px solid rgb(66, 133, 244)',
+					pointerEvents: 'none',
+					width: position.width,
+					height: position.height,
+					zIndex: 1003,
+					borderRadius: 4,
+					boxSizing: 'border-box',
+				}}
+			/>
+		</>,
+		document.querySelector(`.${containerClassName}`)!
 	)
 }
 

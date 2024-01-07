@@ -83,11 +83,11 @@ export default function Stage() {
 		}
 	}, [])
 	useEffect(() => {
+		console.log(selectedMaskRef.current)
 		if (selectedMaskRef?.current) {
 			selectedMaskRef.current.updatePosition()
 		}
 	}, [components])
-	console.log(curComponentId)
 	return (
 		<div
 			className="p-[24px] h-[100%] stage"

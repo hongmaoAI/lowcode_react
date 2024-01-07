@@ -23,6 +23,7 @@ function getComponentById(
 
 export const useComponents = create<State & Action>((set) => ({
 	components: [],
+	curComponent: null,
 	addComponent: (component, parentId) =>
 		set((state) => {
 			// 如果有上级id，把当前组件添加到父组件的子组件
@@ -45,4 +46,19 @@ export const useComponents = create<State & Action>((set) => ({
 			curComponentId: componentId,
 			curComponent: getComponentById(componentId, state.components),
 		})),
+	updateComponentProps: (componentId, props) =>
+		set((state) => {
+			const component = getComponentById(componentId, state.components)
+			if (component) {
+				component.props = { ...component.props, ...props }
+				if (componentId === state.curComponentId) {
+					return {
+						curComponent: component,
+						components: [...state.components],
+					}
+				}
+				return { components: [...state.components] }
+			}
+			return { components: [...state.components] }
+		}),
 }))

@@ -14,6 +14,7 @@ export interface Component {
 export interface State {
 	components: Component[]
 	curComponentId?: number
+	curComponent?: Component | null
 }
 
 export interface Action {
