@@ -10,8 +10,9 @@ function getComponentById(
 	id: number,
 	components: Component[]
 ): Component | null {
+	if (!id) return null
 	for (const component of components) {
-		if (component.id === id) return component
+		if (component.id == id) return component
 		if (component.children && component.children.length > 0) {
 			const result = getComponentById(id, component.children)
 			if (result !== null) return result
@@ -39,4 +40,9 @@ export const useComponents = create<State & Action>((set) => ({
 			}
 			return { components: [...state.components, component] }
 		}),
+	setCurComponentId: (componentId) =>
+		set((state) => ({
+			curComponentId: componentId,
+			curComponent: getComponentById(componentId, state.components),
+		})),
 }))

@@ -7,8 +7,10 @@ export interface Component {
 
 export interface State {
 	components: Component[]
+	curComponentId?: number
 }
 
 export interface Action {
 	addComponent: (component: Component, parentId?: number) => void
+	setCurComponentId: (componentId: number) => void
 }
