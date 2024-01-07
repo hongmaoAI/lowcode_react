@@ -17,7 +17,7 @@ export default function Layout() {
 	return (
 		<div className="h-[100vh] flex flex-col">
 			{/* up */}
-			<div className="h-[50px] flex items-center bg-red-300">
+			<div className="h-[50px] flex items-center bg-gradient-to-r from-violet-500 to-fuchsia-500">
 				<Header />
 			</div>
 			{/* down */}
