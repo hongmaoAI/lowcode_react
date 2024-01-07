@@ -12,7 +12,7 @@ interface Props {
 	offsetContainerClassName: string
 }
 
-function SelectedMask(
+const SelectedMask = forwardRef(function SelectedMask(
 	{ componentId, containerClassName, offsetContainerClassName }: Props,
 	ref: any
 ) {
@@ -24,13 +24,15 @@ function SelectedMask(
 	})
 
 	useEffect(() => {
-		updatePosition()
+		if (componentId) {
+			updatePosition()
+		}
 	}, [componentId])
 	useImperativeHandle(ref, () => ({
 		updatePosition,
 	}))
 
-	const updatePosition = () => {
+	function updatePosition() {
 		if (!componentId) return
 		const container = document.querySelector(`.${offsetContainerClassName}`)
 		if (!container) return
@@ -70,6 +72,6 @@ function SelectedMask(
 		</>,
 		document.querySelector(`.${containerClassName}`)!
 	)
-}
+})
 
-export default forwardRef(SelectedMask)
+export default SelectedMask

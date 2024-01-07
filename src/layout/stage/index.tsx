@@ -83,7 +83,6 @@ export default function Stage() {
 		}
 	}, [])
 	useEffect(() => {
-		console.log(selectedMaskRef.current)
 		if (selectedMaskRef?.current) {
 			selectedMaskRef.current.updatePosition()
 		}
