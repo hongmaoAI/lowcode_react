@@ -24,6 +24,7 @@ function getComponentById(
 export const useComponents = create<State & Action>((set) => ({
 	components: [],
 	curComponent: null,
+	mode: 'edit',
 	addComponent: (component, parentId) =>
 		set((state) => {
 			// 如果有上级id，把当前组件添加到父组件的子组件
@@ -61,4 +62,5 @@ export const useComponents = create<State & Action>((set) => ({
 			}
 			return { components: [...state.components] }
 		}),
+	setMode: (mode) => set({ mode }),
 }))

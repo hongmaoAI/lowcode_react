@@ -13,7 +13,7 @@ import type { Component } from '../../types/component'
 // app -> hooks
 import { useComponents } from '../../app/hooks/useComponents'
 
-interface ComponentMap {
+export interface ComponentMap {
 	[key: string]: React.ComponentType<any>
 }
 

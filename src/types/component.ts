@@ -13,8 +13,9 @@ export interface Component {
 
 export interface State {
 	components: Component[]
-	curComponentId?: number
+	curComponentId?: number | null
 	curComponent?: Component | null
+	mode: 'edit' | 'preview'
 }
 
 export interface Action {
@@ -30,7 +31,7 @@ export interface Action {
 	 * @param componentId 组件Id
 	 * @memberof Action
 	 */
-	setCurComponentId: (componentId: number) => void
+	setCurComponentId: (componentId: number | null) => void
 	/**
 	 * 更新组件
 	 * @param componentId 组件Id
@@ -38,4 +39,9 @@ export interface Action {
 	 * @memberof Action
 	 */
 	updateComponentProps: (componentId: number, props: any) => void
+	/**
+	 * 设置模式
+	 * @memberof Action
+	 */
+	setMode: (mode: State['mode']) => void
 }
