@@ -45,7 +45,7 @@ export const useComponents = create<State & Action>((set) => ({
 	setCurComponentId: (componentId) =>
 		set((state) => ({
 			curComponentId: componentId,
-			curComponent: getComponentById(componentId, state.components),
+			curComponent: getComponentById(componentId!, state.components),
 		})),
 	updateComponentProps: (componentId, props) =>
 		set((state) => {

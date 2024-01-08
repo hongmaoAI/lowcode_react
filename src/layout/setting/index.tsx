@@ -1,87 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 // antd
-import { Form, Input, Select } from 'antd'
-// item-type
-import { ItemType } from '../../item-type'
-// useComponent
-import { useComponents } from '../../app/hooks/useComponents'
-
-const componentSettingMap = {
-	[ItemType.Button]: [
-		{
-			name: 'type',
-			label: '按钮类型',
-			type: 'select',
-			options: [
-				{
-					label: '主按钮',
-					value: 'primary',
-				},
-				{
-					label: '次按钮',
-					value: 'default',
-				},
-			],
-		},
-		{
-			name: 'children',
-			label: '文本',
-			type: 'input',
-		},
-	],
-	[ItemType.Space]: [
-		{
-			name: 'size',
-			label: '间距大小',
-			type: 'select',
-			options: [
-				{ label: '大', value: 'large' },
-				{ label: '中', value: 'middle' },
-				{ label: '小', value: 'small' },
-			],
-		},
-	],
-}
+import { Segmented } from 'antd'
+// type
+import type { SegmentedValue } from 'antd/es/segmented'
+// component
+import Attr from './attr'
+import Event from './Event'
 
 export default function Setting() {
-	const [form] = Form.useForm()
-	const { curComponentId, updateComponentProps, curComponent } = useComponents()
-	// 初始化表单
-	useEffect(() => {
-		form.setFieldsValue(curComponent?.props)
-	}, [curComponent])
-	const valueChange = (changeValue: any) => {
-		if (curComponentId) {
-			updateComponentProps(curComponentId, changeValue)
-		}
-	}
-	function renderFormElement(setting: any) {
-		const { type, options } = setting
-		if (type === 'select') {
-			return <Select options={options} />
-		} else if (type === 'input') {
-			return <Input />
-		}
-	}
-	if (!curComponentId || !curComponent) return null
+	const [key, setKey] = useState<SegmentedValue>('属性')
+
 	return (
-		<div className="pt-[20px]">
-			<Form
-				form={form}
-				onValuesChange={valueChange}
-				labelCol={{ span: 8 }}
-				wrapperCol={{ span: 14 }}
-			>
-				{(componentSettingMap[curComponent.name] || []).map(
-					(setting, index) => {
-						return (
-							<Form.Item name={setting.name} label={setting.label} key={index}>
-								{renderFormElement(setting)}
-							</Form.Item>
-						)
-					}
-				)}
-			</Form>
+		<div>
+			<Segmented
+				options={['属性', '事件']}
+				block
+				value={key}
+				onChange={setKey}
+			/>
+			<div className="pt-[20px]">
+				{key === '属性' && <Attr />}
+				{key === '事件' && <Event />}
+			</div>
 		</div>
 	)
 }
