@@ -6,8 +6,8 @@ import type { State, Action, Component } from '../../types/component'
 /**
  * 根据id递归查找组件
  */
-function getComponentById(
-	id: number,
+export function getComponentById(
+	id: number | string,
 	components: Component[]
 ): Component | null {
 	if (!id) return null

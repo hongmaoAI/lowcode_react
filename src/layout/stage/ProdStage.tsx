@@ -51,7 +51,7 @@ export default function ProdStage() {
 					{
 						key: component.id,
 						id: component.id,
-						ref: (ref) => {
+						ref: (ref: any) => {
 							componentRefs.current[component.id] = ref
 						},
 						...component.props,
