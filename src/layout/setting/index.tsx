@@ -4,7 +4,7 @@ import { Segmented } from 'antd'
 // type
 import type { SegmentedValue } from 'antd/es/segmented'
 // component
-import Attr from './attr'
+import Attr from './Attr'
 import Event from './Event'
 
 export default function Setting() {

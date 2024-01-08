@@ -3,11 +3,13 @@ import React, { useRef } from 'react'
 import type { ComponentMap } from './index'
 import type { Component } from '../../types/component'
 // antd
-import { Button, Space, message } from 'antd'
+import {  Space, message } from 'antd'
 // useComponents
 import { useComponents } from '../../app/hooks/useComponents'
 // componentEventMap
 import { componentEventMap } from '../setting/Event'
+// component
+import Button from '../../common/Button'
 
 const ComponentMap: ComponentMap = {
 	Button: Button,
@@ -31,6 +33,11 @@ export default function ProdStage() {
 								message.success(config.text)
 							} else if (config.type === 'error') {
 								message.error(config.text)
+							}
+						} else if (type === 'componentFunction') {
+							const component = componentRefs.current[config.componentId]
+							if (component) {
+								component[config.method]?.()
 							}
 						}
 					}
