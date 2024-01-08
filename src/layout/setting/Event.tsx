@@ -8,7 +8,7 @@ import { Collapse, Input, Select, TreeSelect } from 'antd'
 // type
 import type { Component } from '../../types/component'
 // getComponentById
-import { getComponentById } from '../../app/hooks/useComponents'
+import { getComponentById } from '../../utils/utils'
 
 export const componentEventMap = {
 	[ItemType.Button]: [
