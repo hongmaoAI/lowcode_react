@@ -5,6 +5,8 @@ import { Form, Input, Select } from 'antd'
 import { ItemType } from '../../item-type'
 // useComponent
 import { useComponents } from '../../app/hooks/useComponents'
+// component
+import SettingFormItemInput from '../../common/SettingFormItemInput'
 
 const componentSettingMap = {
 	[ItemType.Button]: [
@@ -59,7 +61,7 @@ export default function Attr() {
 		if (type === 'select') {
 			return <Select options={options} />
 		} else if (type === 'input') {
-			return <Input />
+			return <SettingFormItemInput />
 		}
 	}
 	if (!curComponentId || !curComponent) return null

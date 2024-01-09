@@ -57,7 +57,7 @@ export default function Stage() {
 			canDrop: monitor.canDrop(),
 		}),
 	}))
-	const { components, curComponentId, setCurComponentId } = useComponents()
+	const { components, curComponentId, setCurComponentId,curComponent } = useComponents()
 	const selectedMaskRef = useRef<any>(null)
 	useEffect(() => {
 		function createMask(e: any) {
